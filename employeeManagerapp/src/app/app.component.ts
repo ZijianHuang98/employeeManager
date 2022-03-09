@@ -8,20 +8,23 @@ import { EmployeeService } from './employee.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'employeeManagerapp';
-  employees: Employee[] = [];
+  title = 'employeeManagerapp'
+  employees: Employee[] = []
   constructor(private employeeService: EmployeeService){}
-  getEmployee():void{
-    this.employeeService.getEmployees().subscribe(
-      (res:Employee[])=>{
-        this.employees = res
-      },
-      (error:HttpErrorResponse)=>{
-        alert(error.message)
-      }
+  ngOnInit(): void {
+    this.getEmployees
+  }
+  public getEmployees():void{
+    this.employeeService.getEmployees().subscribe({
+      next:(res) => {this.employees = res}
+    }
+      // (res:Employee[])=>{
+      //   this.employees = res
+      // },
+      // (error:HttpErrorResponse)=>{
+      //   alert(error.message)
+      // }
     )
   }
-  ngOnInit(): void {
-    this.getEmployee
-  }
+
 }
